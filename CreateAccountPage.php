@@ -21,24 +21,23 @@
 			<h1>Create Account</h1>
 			<b1>
 				<form method="post" action="scripts/CreateAccount.php">
-					<p>
+					<div class="vertical-box-item">
 						<input type="text" id="username" name="username" placeholder="Username" required oninput="checkEnteredValid()">
-					</p>
-					<p>
+					</div>
+					<div class="vertical-box-item">
 						<input type="password" name="password" id="password" placeholder="Password" required oninput="checkEnteredValid()">
-					</p>
+					</div>
 					
-					<p>
+					<div class="vertical-box-item">
 						<input type="password" id="passwordRetype" placeholder="Password Retyle" required oninput="checkEnteredValid()">
-					</p>
-					
-					<p>
+					</div>
+					<p class="vertical-box-item">
 						Show password
 						<input type="checkbox" unchecked onclick="showPassword()">
 					</p>
-					<p>
+					<div class="vertical-box-item">
 						<input type="submit" class="header-button-style & button-update" value="Create Account">
-					</p>
+					</div>
 				</form>
 
 				<?php
@@ -46,7 +45,7 @@
 					{
 						if ($_GET["error"] == "useralreadyexists")
 						{
-							echo "<p>Account already exists, please pick another username.</p>";
+							echo "<div class='vertical-box-item'><p>Account already exists, please pick another username.</p></div>";
 						}
 					}
 				?>

@@ -5,9 +5,10 @@
 	<title>Heap Underflow</title>
 
 	<link href="style/style.css" rel="stylesheet" type="text/css">
+	<script src="javascript/CreatePage.js"></script>
 </head>
 
-<body>
+<body onload="updateAvailableSubjects()">
 	<?php
 		include("scripts/header.php");
 
@@ -25,7 +26,7 @@
 				<h1><?php echo $_POST["create"];?></h1>
 				<b1>
 
-				<form method="post" action="../scripts/Create.php">
+				<form method="post" action="../scripts/Create.php" Valid="UpdateSecretSubjectName()">
 
 				<?php
 					
@@ -37,20 +38,95 @@
 					//echo "<p>" . $_POST["TopicName"] . "</p>";
 					//echo "<p>" . $_POST["SubjectName"] . "<p>";
 
-					if ($_POST["From"] == "CreateOptions")
+					
+					if ($_POST["create"] == "Create Topic")
 					{
-						if ($_POST["create"] == "Create Topic")
-						{
-							echo '<div class="vertical-box-item" >Enter new Topic Name</div>';
-							echo '<div class="vertical-box-item" ><input type="textbox" name="NewTopicName" placeholder="Topic Name" maxlength="45" required></div>';
-							echo '<div class="vertical-box-item" ><textarea name="TopicDesc" minlength="15" maxlength="254" rows="20" cols="40" placeholder="Topic Description" required style="resize:vertical"></textarea></div>';
-							echo '<div><input type="submit" class="header-button-style & button-change" name="create" value="Create Topic" ></div>';
+						echo '<div class="vertical-box-item" >Enter New Topic Information</div>';
+						echo '<div class="vertical-box-item" ><input type="textbox" name="NewTopicName" placeholder="Topic Name" maxlength="45" required></div>';
+						echo '<div class="vertical-box-item" ><textarea name="TopicDesc" minlength="15" maxlength="254" rows="20" cols="40" placeholder="Topic Description" required style="resize:vertical"></textarea></div>';
+						echo '<div><input type="submit" class="header-button-style & button-change" name="create" value="Create Topic" ></div>';
 							
-						}
+					}
 
+					else if ($_POST["create"] == "Create Subject")
+					{
+
+
+						$topics = GetAllTopicNames($conn);
+
+						echo '<div class="vertical-box-item" >Enter New Subject Information</div>';
 
 						
+						echo '<div class="vertical-box-item" ><label>Parent Topic - </label><select name="TopicName">';
+
+						foreach ($topics as $topic)
+						{
+							if ($_POST["From"] == "TopicPage" && $_POST["TopicName"] == $topic)
+							{
+								echo '<option value="'.$topic.'" selected>'.$topic.'</option>';
+							}
+							else
+							{
+								echo '<option value="'.$topic.'">'.$topic.'</option>';
+							}
+						}
+
+						echo '</select></div>';
+
+						if ($_POST["From"] == "TopicPage")
+						{
+							echo '<div class="vertical-box-item" ><input type="textbox" name="NewSubjectName" placeholder="Subject Name" maxlength="45" required value="' . $_POST["SubjectName"] . '"></div>';
+						}
+						else
+						{
+							echo '<div class="vertical-box-item" ><input type="textbox" name="NewSubjectName" placeholder="Subject Name" maxlength="45" required></div>';
+						}
+
+						echo '<div><input type="submit" class="header-button-style & button-change" name="create" value="Create Subject" ></div>';
 					}
+					else if ($_POST["create"] == "Create Definition")
+					{
+						$topics = GetAllTopicNames($conn);
+						
+						echo '<div class="vertical-box-item" >Enter New Definition Information</div>';
+
+						//Loop through all topics and get the subjects
+						//JS can then show the ones that are suitable for the user for when they select a certain topic
+						//Might not be the best for a large amount of subjects but should be fine due to only getting the name (There are a lot of loops for this to work)
+
+						echo '<div class="vertical-box-item" ><label>Parent Topic - </label><select name="TopicName" id="ParentTopic" onchange="updateAvailableSubjects()">';
+
+						foreach ($topics as $topic)
+						{
+							echo '<option value="'.$topic.'">'.$topic.'</option>';
+						}
+
+						echo "</select></div>";
+
+
+						foreach ($topics as $topic)
+						{
+							echo '<ul id="'.$topic.'" hidden>';
+
+							$topicCode = GetTopicIdFromName($conn, $topic);
+
+							$subjects = GetSubjectsFromTopicId($conn, $topicCode);
+
+							echo '<li class="vertical-box-item"><label>Parent Subject - </label><select onchange="UpdateSecretSubjectName()">';
+
+							foreach ($subjects as $subject)
+							{
+								echo '<option value="'.$subject.'">'.$subject.'</option>';
+							}
+
+							echo "</select></li></ul>";
+						}
+						echo '<input type="text" name="SubjectName" id="hiddenSubjectName" hidden>';
+						echo '<div class="vertical-box-item" ><textarea name="Definition" minlength="20" maxlength="510" rows="20" cols="40" placeholder="Defintion" required style="resize:vertical"></textarea></div>';
+						echo '<div><input type="submit" class="header-button-style & button-change" name="create" value="Create Definition" onclick="UpdateSecretSubjectName()"></div>';
+					}
+						
+					
 
 
 				

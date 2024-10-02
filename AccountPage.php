@@ -47,19 +47,19 @@
 							}
 						}
 
-						echo "<h3>Username</h3>
-							<b2>
+						echo "<h2>Username</h2>
+							<b1>
 								<p>
 									Current - $username
 								</p>
 								<p>
 									<input type='submit' class='header-button-style & button-update' value='Change Username' name='change'>
 								</p>
-							</b2>";
+							</b1>";
 
-						echo "<h4>Password</h4><b3><input type='submit' class='header-button-style & button-update' value='Change Password' name='change'></b3>";
+						echo "<h2>Password</h2><b1><input type='submit' class='header-button-style & button-update' value='Change Password' name='change'></b1>";
 
-						echo "<h5>Delete Account</h5><b4><input type='submit' class='header-button-style & button-update' value='Delete Account' name='change'></b4>";
+						echo "<h2>Delete Account</h2><b1><input type='submit' class='header-button-style & button-update' value='Delete Account' name='change'></b1>";
 				
 					?>
 				

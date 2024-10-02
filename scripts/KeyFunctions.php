@@ -111,6 +111,7 @@ function DeleteKeyFromCookie()
 
 function GetUserIdFromKey($conn, $key)
 {
+
 	$sql = "SELECT * FROM tblCurrentKeys as k WHERE k.key = '$key'";
 
 	$result = mysqli_query($conn, $sql);
@@ -124,4 +125,5 @@ function GetUserIdFromKey($conn, $key)
 
 	return $userId;
 }
+
 ?>

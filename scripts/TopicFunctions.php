@@ -56,6 +56,8 @@ function GetTopicDesc($conn, $topic_id)
 
 function CreateTopic($conn, $topicName, $topicDesc)
 {
+	$topicName = str_replace("'", "''", $topicName);
+
 	$sql = "INSERT INTO tblTopics (topic_name, topic_desc) VALUES('$topicName', '$topicDesc');";
 
 	mysqli_query($conn, $sql);
