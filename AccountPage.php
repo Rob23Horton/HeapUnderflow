@@ -6,6 +6,7 @@
 
 	<link href="style/style.css" rel="stylesheet" type="text/css">
 
+    <script src="../javascript/UploadImage.js"></script>
 </head>
 
 <body>
@@ -18,18 +19,61 @@
 		<div class="box-flex & box-style">
 			<h1>Account</h1>
 			<b1>
+
+            <h2>Profile Picture</h2>
+            <div>
+                <?php
+                    include_once("scripts/connection.php");
+
+                    if (!isset($_COOKIE["key"]))
+                    {
+                        header("location: scripts/MovePage.php?MoveTo=Home");
+                        exit();
+                    }
+
+                    include_once("scripts/KeyFunctions.php");
+                    include_once("scripts/UserInfoFunctions.php");
+                    include_once("scripts/ImageFunctions.php");
+
+                    $userId = GetUserIdFromKey($conn, $_COOKIE["key"]);
+
+                    $imageCode = GetProfileImageCodeFromUserCode($conn, $userId);
+
+                    $imageData = GetImageFromId($conn, $imageCode);
+
+                    echo '<img src="'.$imageData.'" style="width:100%;height:auto;max-width:50%" id="imagePreview">';
+
+                ?>
+            </div>
+
+            <form method="post" action="../scripts/AddImage.php">
+                <input type="file" id="fileInput" oninput="ImageChanged()">
+                <input type="text" name="fileData" id="fileData" hidden> <!--Actual Data -->
+                <input type="text" name="uploadType" value="Profile" hidden> <!-- Image Type -->
+                <input type="text" name="returnLocation" value="../AccountPage.php" hidden> <!-- Return Location -->
+                <?php
+                    if (isset($_GET["error"]))
+                    {
+                        if ($_GET["error"] == "FileTooLarge")
+                        {
+                            echo '<p>File Selected Was Too Large</p>';
+                        }
+                        else if ($_GET["error"] == "FileTooSmall")
+                        {
+                            echo '<p>No File Was Selected</p>';
+                        }
+                    }
+                ?>
+                <div><input type="submit" class="header-button-style & button-update" value="Upload Image"></div>
+            </form>
+
+
 				<form method="post" action="ChangeUserDetailsPage.php">
 
 					<?php
 						include_once("scripts/connection.php");
 						include_once("scripts/KeyFunctions.php");
 						include_once("scripts/UserFunctions.php");
-
-						if (!isset($_COOKIE["key"]))
-						{
-							header("location: scripts/MovePage.php?MoveTo=Home");
-							exit();
-						}
 
 						$userId = GetUserIdFromKey($conn, $_COOKIE["key"]);
 

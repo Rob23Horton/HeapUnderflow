@@ -15,7 +15,6 @@ include_once("../scripts/KeyFunctions.php");
 
 $topics = GetAllTopicNames($conn);
 
-
 if ($_POST["create"] == "Create Topic")
 {
 	$newTopic = $_POST["NewTopicName"];
@@ -29,6 +28,8 @@ if ($_POST["create"] == "Create Topic")
 
 	CreateTopic($conn, $newTopic, $newDesc);
 
+    header("location: ../TopicPage.php?topic=".urlencode($newTopic));
+    exit();
 }
 else if ($_POST["create"] == "Create Subject")
 {
@@ -37,6 +38,8 @@ else if ($_POST["create"] == "Create Subject")
 
 	$topicCode = GetTopicIdFromName($conn, $topicName);
 
+    //TODO - Check if subject already exists
+
 	if (is_null($topicCode)){
 		header("location: ../scripts/MovePage.php?MoveTo=Home");
 		exit();
@@ -44,6 +47,8 @@ else if ($_POST["create"] == "Create Subject")
 
 	CreateSubject($conn, $subjectName, $topicCode);
 
+    header("location: ../SubjectPage.php?topic=".urlencode($topicName)."&subject=".urlencode($subjectName));
+    exit();
 }
 else if ($_POST["create"] == "Create Definition")
 {
@@ -65,6 +70,32 @@ else if ($_POST["create"] == "Create Definition")
 	$userCode = GetUserIdFromKey($conn, $_COOKIE["key"]);
 
 	CreateDefinition($conn, $defintion, $userCode, $subjectCode);
+
+    header("location: ../SubjectPage.php?topic=".urlencode($topic)."&subject=".urlencode($subject));
+    exit();
+}
+else if ($_POST["create"] == "Update Definition")
+{
+	$topic = $_POST["topicName"];
+	$subject = $_POST["subjectName"];
+
+	$topicCode = GetTopicIdFromName($conn, $topic);
+
+	$subjectCode = GetSubjectIdFromTopicCodeAndSubjectName($conn, $topicCode, $subject);
+
+	if (is_null($subjectCode))
+	{
+		header("location: ../SubjectPage.php?topic=".urlencode($topic)."&subject=".urlencode($subject)."&updated=false");
+		exit();
+	}
+
+	$userCode = GetUserIdFromKey($conn, $_COOKIE["key"]);
+
+	UpdateDefinition($conn, $_POST["definition"], $userCode, $subjectCode);
+
+	header("location: ../SubjectPage.php?topic=".urlencode($topic)."&subject=".urlencode($subject)."&updated=true");
+	exit();
+
 }
 
 header("location: ../scripts/MovePage.php?MoveTo=Home");

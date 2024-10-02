@@ -3,26 +3,25 @@
 
 include_once("connection.php");
 include_once("UserFunctions.php");
+include_once("UserInfoFunctions.php");
 
 
 $username = $_POST["username"];
 $password = $_POST["password"];
 $hashedPassword = HashPassword($username, $password);
 
-echo "<br>Checking user doesn't exist.";
-
 if (UserExists($conn, $username))
 {
 	header("location: ../CreateAccountPage.php?error=useralreadyexists");
 	exit();
-}
 
-echo "<br>User doesn't exist.";
-echo "<br>Creating User.";
+}
 
 CreateUser($conn, $username, $hashedPassword);
 
-echo "<br>Created User.";
+//Gets user Id and creates new user information to be able to add extra information
+$userId = GetUserId($conn, $username, $hashedPassword);
+CreateNewUserInfo($conn, $userId);
 
 header("location: ../LogInPage.php");
 exit();

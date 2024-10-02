@@ -18,7 +18,11 @@ function updateSubjectList()
 
 	var searchInput = document.getElementById("subjectSearch");
 	var newSubjectName = document.getElementById("SubjectName");
-	newSubjectName.value = searchInput.value;
+
+    if (newSubjectName !== null)
+    {
+	    newSubjectName.value = searchInput.value;
+    }
 
 	var subjectFilter = searchInput.value.toUpperCase();
 	var subjects = document.getElementById("subjects");
@@ -30,9 +34,9 @@ function updateSubjectList()
 	
 	for (var i = 0; i < subjectItems.length; i++)
 	{
-		var a = subjectItems[i].getElementsByTagName("input")[0];
+		var a = subjectItems[i].getElementsByTagName("a")[0];
 		
-		if (a.value.toUpperCase().indexOf(subjectFilter) > -1)
+		if (a.innerHTML.toUpperCase().indexOf(subjectFilter) > -1)
 		{
 			subjectItems[i].style.display = "";
 			amountShown++;

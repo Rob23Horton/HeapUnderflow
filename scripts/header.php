@@ -4,25 +4,21 @@
 	<div style="padding-top:1%">
 		<div style="align-self:center">
 			
-			
-			<form action="../scripts/MovePage.php" method="post">
-			
-				<input type="submit" class="header-button-style & button-update" name="MoveTo" value="Home">
-			
-				<?php
-				
-					if (!isset($_COOKIE["key"]))
-					{
-						echo '<input type="submit" class="header-button-style & button-update & horizontal-box-item" name="MoveTo" value="Log In">';
-					}
-					else
-					{
-						echo '<input type="submit" class="header-button-style & button-update" name="MoveTo" value="Create">';
-						echo '<input type="submit" class="header-button-style & button-update" name="MoveTo" value="Account">';
-						echo '<input type="submit" class="header-button-style & button-update" name="MoveTo" value="Log Out">';
-					}
-				?>
-			</form>
+            <a class="header-button-style & button-update & horizontal-box-item & link-button" style="text-align:center" href="../">Home</a>
+        
+            <?php
+            
+                if (!isset($_COOKIE["key"]))
+                {
+                    echo '<a class="header-button-style & button-update & horizontal-box-item & link-button" style="text-align:center" href="../LogInPage.php">Log In</a>';
+                }
+                else
+                {
+                    echo '<a class="header-button-style & button-update & horizontal-box-item & link-button" style="text-align:center" href="../CreateOptionsPage.php">Create</a>';
+                    echo '<a class="header-button-style & button-update & horizontal-box-item & link-button" style="text-align:center" href="../AccountPage.php">Account</a>';
+                    echo '<a class="header-button-style & button-update & horizontal-box-item & link-button" style="text-align:center" href="LogOutPage.php">Log Out</a>';
+                }
+            ?>
 		</div>
 	</div>
 </header>

@@ -10,17 +10,28 @@
 
 <body>
 	<?php
+		include_once("scripts/connection.php");
+
 		include("scripts/header.php");
 	?>
 
 	<div style="text-align: center">
 		<div class="box-flex & box-style">
-			<p>This is the home page.</p>
-			<p>This website is in development.</p>
+            <table style="margin:auto">
+                <tr>
+                    <td style="padding-right:50px;vertical-align:top">
+                        <?php
 
-			<?php
-				include("scripts/TopicsGridBody.php");
-			?>
+                            include("scripts/TopicsGridBody.php");
+                        ?>
+                    </td>
+                    <td style="vertical-align:top">
+                        <?php
+                            include_once("scripts/SearchBar.php");
+                        ?>
+                    </td>
+                </tr>
+            </table>
 		</div>
 	</div>
 

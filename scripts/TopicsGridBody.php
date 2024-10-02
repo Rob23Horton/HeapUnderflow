@@ -1,21 +1,17 @@
 <h1>Topics</h1>
 <b1>
 
-	<form method="post" action="../TopicPage.php"> 
+    <?php
 
-		<?php
+        include("connection.php");
+        include_once("TopicFunctions.php");
 
-			include("connection.php");
-			include_once("TopicFunctions.php");
+        $topics = GetAllTopicNames($conn);
 
-			$topics = GetAllTopicNames($conn);
+        foreach ($topics as $topic)
+        {
+            echo '<p class="vertical-box-item"><a class="header-button-style & button-update & link-button" href="../TopicPage.php?topic=' . htmlspecialchars($topic) . '">'.$topic.'</a> </p>';
+        }
 
-			foreach ($topics as $topic)
-			{
-				echo '<p class="vertical-box-item"><input type="submit" class="header-button-style & button-update" name="topic" value="' . $topic . '" </p>';
-			}
-
-		?>
-
-	</form>
+    ?>
 </b1>

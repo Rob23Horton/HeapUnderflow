@@ -57,6 +57,13 @@ else if ($_POST["change"] == "Change Password")
 }
 else if ($_POST["change"] == "Delete Account")
 {
+    include_once("UserInfoFunctions.php");
+    include_once("ImageFunctions.php");
+
+    $image_code = GetProfileImageCodeFromUserCode($conn, $userId);
+    DeleteOldImage($conn, $image_code, $userId);
+    DeleteUserInfo($conn, $userId);
+
 	ChangePasswordFromId($conn, $userId, 'None');
 	ChangeUsernameFromId($conn, $userId, 'DeletedUser');
 	DeleteKeyForUser($conn, $_COOKIE["key"]);
