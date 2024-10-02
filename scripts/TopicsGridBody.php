@@ -1,20 +1,18 @@
 <h1>Topics</h1>
 <b1>
 
-	<form method="post" action="../scripts/MovePage.php?MoveTo=Account"> 
+	<form method="post" action="../TopicPage.php"> 
 
 		<?php
-
-			//TODO - Make page to be able to show info about topic (Add description to topic table)
 
 			include("connection.php");
 			include_once("TopicFunctions.php");
 
-			$topics = GetAllTopics($conn);
+			$topics = GetAllTopicNames($conn);
 
 			foreach ($topics as $topic)
 			{
-				echo '<p><input type="submit" class="header-button-style & button-update" name="topic" value="' . $topic . '" </p>';
+				echo '<p class="vertical-box-item"><input type="submit" class="header-button-style & button-update" name="topic" value="' . $topic . '" </p>';
 			}
 
 		?>

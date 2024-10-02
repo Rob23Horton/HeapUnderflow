@@ -7,7 +7,7 @@ if (!isset($_POST["change"]))
 }
 
 include_once("connection.php");
-include_once("DatabaseFunctions.php");
+include_once("UserFunctions.php");
 include_once("KeyFunctions.php");
 
 if (!isset($_COOKIE["key"]))

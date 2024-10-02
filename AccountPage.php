@@ -23,7 +23,7 @@
 					<?php
 						include("scripts/connection.php");
 						include_once("scripts/KeyFunctions.php");
-						include_once("scripts/DatabaseFunctions.php");
+						include_once("scripts/UserFunctions.php");
 
 						echo '<script type="text/JavaScript">console.log("Not moving to home - DEBUGGING");</script>';
 

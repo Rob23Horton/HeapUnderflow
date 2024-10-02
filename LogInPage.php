@@ -26,24 +26,24 @@
 			<h1>Log In</h1>
 			<b1>
 				<form method="post" action="scripts/LogIn.php">
-					<p>
+					<p class="vertical-box-item">
 						<input type="text" name="username" id="username" placeholder="Username" required oninput="checkEnteredValid()">
 					</p>
-					<p>
+					<p class="vertical-box-item">
 						<input type="password" name="password" id="password" placeholder="Password" required oninput="checkEnteredValid()">
 					</p>
-					<p>
+					<p class="vertical-box-item">
 						Show Password
 						<input type="checkbox" unchecked onclick="showPassword()">
 					</p>
-					<p>
+					<p class="vertical-box-item">
 						<input type="submit" class="header-button-style & button-update" value="Log In">
 					</p>
 
 					
 				</form>
 				<form method="post" action="scripts/MovePage.php">
-					<p>
+					<p class="vertical-box-item">
 						<input type="submit" class="header-button-style & button-update" name="MoveToAccountPage" value="Create Account">
 					</p>
 				</form>

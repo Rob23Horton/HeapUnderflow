@@ -2,7 +2,7 @@
 <?php
 
 include_once("connection.php");
-include_once("DatabaseFunctions.php");
+include_once("UserFunctions.php");
 
 
 $username = $_POST["username"];

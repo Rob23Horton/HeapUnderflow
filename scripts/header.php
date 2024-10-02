@@ -13,7 +13,7 @@
 				
 					if (!isset($_COOKIE["key"]))
 					{
-						echo '<input type="submit" class="header-button-style & button-update" name="MoveToLogInPage" value="Log In">';
+						echo '<input type="submit" class="header-button-style & button-update & horizontal-box-item" name="MoveToLogInPage" value="Log In">';
 					}
 					else
 					{
