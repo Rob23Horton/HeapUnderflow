@@ -95,5 +95,4 @@ function ChangePasswordFromId($conn, $userId, $password)
 
 	mysqli_query($conn, $sql);
 }
-
 ?>

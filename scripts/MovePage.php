@@ -39,6 +39,12 @@ foreach (array_merge($_POST, $_GET) as $key => $value)
 		header("location: ../AccountPage.php");
 		exit();
 	}
+
+	else if ($value == "Create")
+	{
+		header("location: ../CreateOptionsPage.php");
+		exit();
+	}
 }
 
 header("location: ../?error=somethingwentwrong");

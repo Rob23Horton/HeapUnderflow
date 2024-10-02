@@ -20,37 +20,55 @@
 			<?php
 
 				include_once("scripts/connection.php");
-				include("scripts/TopicFunctions.php");
+				include_once("scripts/TopicFunctions.php");
+				include_once("scripts/SubjectFunctions.php");
 			
 				$topic_name = $_POST["topic"];
-
-				echo "<h1>$topic_name</h1>";
 
 				$topic_id = GetTopicIdFromName($conn, $topic_name);
 
 				$topic_desc = GetTopicDesc($conn, $topic_id);
 
+				$topic_subjects = GetSubjectsFromTopicId($conn, $topic_id);
+
+				echo "<h1>$topic_name</h1>";
+
 				echo "<b1><p>Topic Description - </p>";
-				echo "<p style='padding-bottom:5%'>$topic_desc</p></b1>";
+				echo '<textarea readonly rows="5" cols="40" style="padding-bottom:5%;resize:vertical">'.$topic_desc.'</textarea></b1>';
 				
+				echo "<b2><form method='post' action='../'>";
+				
+
 			
-			
+				if (sizeof($topic_subjects) > 0)
+				{
+					echo "<input type='text' id='subjectSearch' oninput='updateSubjectList()' placeholder='Search for subject...' name='AddSubject' maxlength=45>";
+					echo "<ul id='subjects'>";
+					foreach ($topic_subjects as $subject)
+					{
+						echo "<li class='vertical-box-item'><input type='submit' class='header-button-style & button-update' name='subject' value='$subject'</li>";
+					}
+
+					echo "</ul>";
+				}
+
 			?>
-			<b2 ><input type="text" id="subjectSearch" oninput="updateSubjectList()" placeholder="Search for subject..">
-				
-				<ul id="subjects" style="list-style-type: none">
-				
-					<li><a href="#">Test1</a></li>
-					<li><a href="#">Charlie</a></li>
-					<li><a href="#">Damian</a></li>
-				
-				
-				</ul>
-			
-			
-			
-			
+
+			<p id='NoResults' style='display:none'>Nothing to see.</p>
+			</form>
 			</b2>
+
+			<h2>
+			<form method="post" action="../CreatePage.php">
+				<p>Create Subject</p>
+				<?php
+					echo "<input name='From' value='TopicPage' hidden>";
+					echo "<input name='TopicName' value='" . $_POST["topic"] . "' hidden>";
+					echo "<input name='SubjectName' id='SubjectName' value='' hidden>"
+				?>
+				<p><input type='submit' class='header-button-style & button-update' name="type" value='Create New Subject'></p>
+			</form>
+			</h2>
 		</div>
 	</div>
 </body>

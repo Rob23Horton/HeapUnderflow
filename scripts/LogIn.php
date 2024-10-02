@@ -31,11 +31,28 @@ if ($userId == null)
 
 echo "<br>Checking for session key";
 
-$userKey = GetKeyForUser($conn, $userId);
+$userKeys = GetKeysForUser($conn, $userId);
 
-if ($userKey != null)
+//Deletes all keys that are to do with another device from db
+if (sizeof($userKeys) > 0)
 {
-	AddKeyToCookie($userKey);
+	$invalidKeys = [];
+
+	foreach ($userKeys as $key)
+	{
+		if (!CheckKeyIsValid($key))
+		{
+			DeleteKeyForUser($conn, $key);
+			array_push($invalidKeys, $key);
+		}
+	}
+
+	$userKeys = array_diff($userKeys, $invalidKeys);
+}
+
+if (sizeof($userKeys) == 1)
+{
+	AddKeyToCookie(array_values($userKeys)[0]);
 
 	header("location: ../scripts/MovePage.php?MoveToHomePage=Home");
 	exit();

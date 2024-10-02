@@ -7,18 +7,19 @@
 			
 			<form action="../scripts/MovePage.php" method="post">
 			
-				<input type="submit" class="header-button-style & button-update" name="MoveToHomePage" value="Home">
+				<input type="submit" class="header-button-style & button-update" name="MoveTo" value="Home">
 			
 				<?php
 				
 					if (!isset($_COOKIE["key"]))
 					{
-						echo '<input type="submit" class="header-button-style & button-update & horizontal-box-item" name="MoveToLogInPage" value="Log In">';
+						echo '<input type="submit" class="header-button-style & button-update & horizontal-box-item" name="MoveTo" value="Log In">';
 					}
 					else
 					{
-						echo '<input type="submit" class="header-button-style & button-update" name="MoveToAccountPage" value="Account">';
-						echo '<input type="submit" class="header-button-style & button-update" name="MoveToLogOutPage" value="Log Out">';
+						echo '<input type="submit" class="header-button-style & button-update" name="MoveTo" value="Create">';
+						echo '<input type="submit" class="header-button-style & button-update" name="MoveTo" value="Account">';
+						echo '<input type="submit" class="header-button-style & button-update" name="MoveTo" value="Log Out">';
 					}
 				?>
 			</form>

@@ -3,7 +3,7 @@
 
 function GetAllTopicNames($conn)
 {
-	$sql = "SELECT * FROM tblTopics;";
+	$sql = "SELECT topic_name FROM tblTopics ORDER BY topic_name;";
 
 	$result = mysqli_query($conn, $sql);
 
@@ -52,6 +52,13 @@ function GetTopicDesc($conn, $topic_id)
 	$topic_desc = mysqli_fetch_assoc($result)["topic_desc"];
 
 	return $topic_desc;
+}
+
+function CreateTopic($conn, $topicName, $topicDesc)
+{
+	$sql = "INSERT INTO tblTopics (topic_name, topic_desc) VALUES('$topicName', '$topicDesc');";
+
+	mysqli_query($conn, $sql);
 }
 
 ?>

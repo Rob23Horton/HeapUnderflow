@@ -29,7 +29,14 @@ if (isset($_COOKIE["key"]))
 </head>
 
 <body>
-	
+	<!--Redirects the user back to home page after 15 seconds because it's cool ;)-->
+	<script type="text/javascript">
+		var myTimer = window.setTimeout(timer, 15000);
+
+		function timer() {
+			window.location.href = "scripts/MovePage.php?MoveTo=Home";
+		}
+	</script>
 
 	<div style="text-align: center">
 		<div class="box-flex & box-style">

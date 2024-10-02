@@ -38,6 +38,11 @@ if ($_POST["change"] == "Change Username")
 	$newUsername = $_POST["newUsername"];
 
 	//TODO - Check if user already exists ------------------------------
+	if (UserExists($conn, $newUsername))
+	{
+		header("location: ../AccountPage.php?error=UsernameIsAlreadyUsed");
+		exit();
+	}
 
 	$newPassword = HashPassword($newUsername, $_POST["password"]);
 

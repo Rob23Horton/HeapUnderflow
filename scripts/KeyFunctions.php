@@ -16,10 +16,40 @@ function GetKeyForUser($conn, $userId)
 	return $key;
 }
 
+function GetKeysForUser($conn, $userId)
+{
+	$sql = "SELECT * FROM tblCurrentKeys WHERE user_code = '$userId'";
+
+	$result = mysqli_query($conn, $sql);
+
+	if (mysqli_num_rows($result) == 0)
+	{
+		return [];
+	}
+
+	$keyArr = [];
+
+	while ($rowUserId = mysqli_fetch_assoc($result)["key"])
+	{
+		array_push($keyArr, $rowUserId);
+	}
+
+	return $keyArr;
+}
+
 
 function CreateKeyForUser($conn, $userId)
 {
-	$key = time();
+	$ipAddress = $_SERVER["REMOTE_ADDR"];
+
+	$time = time();
+
+	$hashedIpAddress = HashPassword(strval($time), strval($ipAddress));
+
+	$key = $hashedIpAddress . "" . strval($time);
+
+	echo "<script>console.log('$key');</script>";
+
 
 	$sql = "INSERT INTO tblCurrentKeys (`key`, `user_code`) VALUES ('$key', $userId);";
 
@@ -27,6 +57,23 @@ function CreateKeyForUser($conn, $userId)
 	
 	return $key;
 	
+}
+
+function CheckKeyIsValid($key)
+{
+	$keyTime = substr($key, -10);
+
+	$keyIpAddr = str_replace($keyTime, "", $key);
+
+	$clientIpAddr = strval($_SERVER["REMOTE_ADDR"]);
+
+	$clientIpAddr = HashPassword($keyTime, $clientIpAddr);
+
+	if ($keyIpAddr != $clientIpAddr)
+	{
+		return false;
+	}
+	return true;
 }
 
 function DeleteKeyForUser($conn, $key)
@@ -77,5 +124,4 @@ function GetUserIdFromKey($conn, $key)
 
 	return $userId;
 }
-
 ?>

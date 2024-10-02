@@ -21,15 +21,13 @@
 				<form method="post" action="ChangeUserDetailsPage.php">
 
 					<?php
-						include("scripts/connection.php");
+						include_once("scripts/connection.php");
 						include_once("scripts/KeyFunctions.php");
 						include_once("scripts/UserFunctions.php");
 
-						echo '<script type="text/JavaScript">console.log("Not moving to home - DEBUGGING");</script>';
-
 						if (!isset($_COOKIE["key"]))
 						{
-							header("location: scripts/MovePage.php?MoveToHomePage=Home");
+							header("location: scripts/MovePage.php?MoveTo=Home");
 							exit();
 						}
 
@@ -42,6 +40,10 @@
 							if ($_GET["error"] == "passwordincorrect")
 							{
 								echo "<h2>Password was incorrect. Please try again.</h2>";
+							}
+							else if ($_GET["error"] == "UsernameIsAlreadyUsed")
+							{
+								echo "<h2>Username is already being used. Please try again.</h2>";
 							}
 						}
 
