@@ -1,0 +1,60 @@
+
+body{
+	background-color:#383B93 ;
+	margin: 0;
+	font-family: Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+}
+
+p{
+	margin: 0;
+}
+
+.box-flex{
+	flex: auto;
+	flex-direction: column;
+
+}
+
+.box-style{
+	background-color: #FFFFFF;
+	max-width: 500px;
+/*	max-height: 200px;*/
+	box-shadow: 10px 10px 0px 0px #000044;
+	border-radius: 10px;
+	padding: 20px;
+	margin: 15% auto auto auto;
+}
+
+.header-style{
+	background-color: #FFFFFF;
+	height: 70px;
+	padding: 10px;
+}
+
+.header-button-style{
+	background-color: #466DA5 ;
+	color: #FFFFFF;
+	
+	height: 30px;
+	width: 120px;
+	border-radius: 10px;
+	border: none;
+	margin: auto;
+	cursor: pointer;
+}
+
+.button-update:hover{
+	background-color: #383B93;
+	transform: scale(0.9)
+}
+
+.grid{
+	display: grid;
+	grid-template-columns: 20%;
+}
+
+
+::-ms-reveal
+{
+	display: none;
+}
