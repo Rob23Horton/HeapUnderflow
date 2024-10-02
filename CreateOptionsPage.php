@@ -28,20 +28,38 @@
 
 						<input name="From" value="CreateOptions" hidden>
 						
-						<p class="vertical-box-item">
-							<input type="submit" class="header-button-style & button-change" name="create" value="Create Topic"
-						</p>
+						<div class="vertical-box-item">
+							<input type="submit" class="header-button-style & button-change" name="create" value="Create Topic">
+						</div>
 			
-						<p class="vertical-box-item">
-							<input type="submit" class="header-button-style & button-change" name="create" value="Create Subject"
-						</p>
+						<div class="vertical-box-item">
+							<input type="submit" class="header-button-style & button-change" name="create" value="Create Subject">
+						</div>
 						
-						<p class="vertical-box-item">
-							<input type="submit" class="header-button-style & button-change" name="create" value="Create Definition"
-						</p>
+						<div class="vertical-box-item">
+							<input type="submit" class="header-button-style & button-change" name="create" value="Create Definition">
+                        </div>
 						
 
 					</form>
+
+                    <?php
+                    
+                    if (isset($_GET["error"]))
+                    {
+                        $error = $_GET["error"];
+
+                        if ($error == "topicalreadyexists")
+                        {
+                            echo '<h2>Topic Already Exists!</h2>';
+                        }
+                        else if ($error == "subjectalreadyexists")
+                        {
+                            echo '<h2>Subject Already Exists!</h2>';
+                        }
+                    }
+                    
+                    ?>
 				</b1>
 
 		</div>

@@ -9,6 +9,22 @@
 </head>
 
 <body>
-    <canvas id="canvas" ></canvas>
+    <?php
+        //Be able to be a guest
+        if (!isset($_COOKIE["key"]))
+        {
+            echo '<form method="post" action="../LogInPage.php" id="logInForm" hidden><input type="text" name="returnLocation" value="../DrawPage.php"></form><script>document.getElementById("logInForm").submit();</script>';
+        }
+
+
+        include_once("scripts/header.php");
+    ?>
+
+    <div>
+        <canvas id="canvas" style="border: 1px solid black;">
+            Your browser doesn't support the HTML 5 canvas
+
+        </canvas>
+    </div>
 	
 </html>

@@ -19,6 +19,8 @@
                     echo '<a class="header-button-style & button-update & horizontal-box-item & link-button" style="text-align:center" href="LogOutPage.php">Log Out</a>';
                 }
             ?>
+
+            <a class="header-button-style & button-update & horizontal-box-item & link-button" style="text-align:center" href="../InformationPage.php">Information</a>
 		</div>
 	</div>
 </header>

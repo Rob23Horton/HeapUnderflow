@@ -40,11 +40,19 @@ if (sizeof($userKeys) > 0)
 
 	foreach ($userKeys as $key)
 	{
-		if (!CheckKeyIsValid($key))
+		//Make sure not to delete app keys due to them being different things
+        //(Want to keep them seperate)
+		if (CheckKeyIsApp($key) == true) 
+        {
+            array_push($invalidKeys, $key);
+        }
+		else if (!CheckKeyIsValid($key))
 		{
 			DeleteKeyForUser($conn, $key);
 			array_push($invalidKeys, $key);
 		}
+        
+        
 	}
 
 	$userKeys = array_diff($userKeys, $invalidKeys);
@@ -65,6 +73,11 @@ AddKeyToCookie($userKey);
 
 echo "<br>Created session key";
 
+if (isset($_POST["returnLocation"]))
+{
+    header("location: ". $_POST["returnLocation"]);
+    exit();
+}
 
 header("location: ../scripts/MovePage.php?MoveToHomePage=Home");
 

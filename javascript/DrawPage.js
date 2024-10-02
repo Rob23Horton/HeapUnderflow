@@ -5,12 +5,15 @@ window.addEventListener("load", () => {
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
 
-    canvas.width = window.width;
-    canvas.height = window.height;
+    const rect = canvas.getBoundingClientRect();
+
+    canvas.width = 1280;
+    canvas.height = 550;
 
     let painting = false;
 
-    function startPosition(e){
+    function startPosition(e)
+    {
         painting = true;
         draw(e);
     }
@@ -20,16 +23,17 @@ window.addEventListener("load", () => {
         ctx.beginPath();
     }
 
-    function draw(e){
+    function draw(e)
+    {
         if (!painting) return;
 
         ctx.lineWidth = 10;
         ctx.lineCap = "round";
 
-        ctx.lineTo(e.clientX, e.clientY);
+        ctx.lineTo(e.clientX, e.clientY - rect.top);
         ctx.stroke();
         ctx.beginPath();
-        ctx.moveTo(e.clientX, e.clientY);
+        ctx.moveTo(e.clientX, e.clientY - rect.top);
     }
 
     canvas.addEventListener("mousedown", startPosition);

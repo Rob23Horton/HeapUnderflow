@@ -40,6 +40,15 @@
 						<input type="submit" class="header-button-style & button-update" value="Log In">
 					</p>
 
+                    <?php
+                    
+                    if (isset($_POST["returnLocation"]))
+                    {
+                        echo '<p><input type="text" name="returnLocation" value="'.$_POST["returnLocation"].'" hidden></p>';
+                    }
+                    
+                    ?>
+
 					
 				</form>
 				<form method="post" action="scripts/MovePage.php">

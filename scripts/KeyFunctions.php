@@ -2,7 +2,7 @@
 
 function GetKeyForUser($conn, $userId)
 {
-	$sql = "SELECT * FROM tblCurrentKeys WHERE user_code = '$userId';";
+	$sql = "SELECT k.key FROM tblCurrentKeys as k WHERE k.user_code = '$userId' AND CHAR_LENGTH(k.key) > 32;";
 
 	$result = mysqli_query($conn, $sql);
 
@@ -18,7 +18,7 @@ function GetKeyForUser($conn, $userId)
 
 function GetKeysForUser($conn, $userId)
 {
-	$sql = "SELECT * FROM tblCurrentKeys WHERE user_code = '$userId'";
+	$sql = "SELECT k.key FROM tblCurrentKeys as k WHERE k.user_code = '$userId';";
 
 	$result = mysqli_query($conn, $sql);
 
@@ -48,15 +48,21 @@ function CreateKeyForUser($conn, $userId)
 
 	$key = $hashedIpAddress . "" . strval($time);
 
-	echo "<script>console.log('$key');</script>";
-
-
 	$sql = "INSERT INTO tblCurrentKeys (`key`, `user_code`) VALUES ('$key', $userId);";
 
 	mysqli_query($conn, $sql);
 	
 	return $key;
 	
+}
+
+function CheckKeyIsApp($key)
+{
+    if (strlen($key) == 32)
+    {
+        return true;
+    }
+    return false;
 }
 
 function CheckKeyIsValid($key)
@@ -78,7 +84,7 @@ function CheckKeyIsValid($key)
 
 function DeleteKeyForUser($conn, $key)
 {
-	$sql = "SELECT * FROM tblCurrentKeys as k WHERE k.key = '$key';";
+	$sql = "SELECT k.currentkeys_id FROM tblCurrentKeys as k WHERE k.key = '$key';";
 
 	$result = mysqli_query($conn, $sql);
 
@@ -92,21 +98,17 @@ function DeleteKeyForUser($conn, $key)
 	$sql = "DELETE FROM tblCurrentKeys WHERE currentkeys_id = '$keyId';";
 
 	mysqli_query($conn, $sql);
-	
-	echo "<script type='text/JavaScript'>console.log('Cookie deleted')</script>";
 }
 
 function AddKeyToCookie($key)
 {
 	setcookie("key", $key, time() + (86400 * 30), "/");
-	echo '<script type="text/JavaScript">console.log("Cookie made - DEBUGGING");</script>';
 }
 
 function DeleteKeyFromCookie()
 {
 	unset($_COOKIE["key"]);
 	setcookie("key", null, time() - 36000, "/");
-	echo '<script type="text/JavaScript">console.log("Cookie deleted - DEBUGGING");</script>';
 }
 
 function GetUserIdFromKey($conn, $key)

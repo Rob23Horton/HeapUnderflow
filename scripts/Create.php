@@ -13,10 +13,12 @@ include_once("../scripts/SubjectFunctions.php");
 include_once("../scripts/DefinitionFunctions.php");
 include_once("../scripts/KeyFunctions.php");
 
-$topics = GetAllTopicNames($conn);
+
 
 if ($_POST["create"] == "Create Topic")
 {
+    $topics = GetAllTopicNames($conn);
+
 	$newTopic = $_POST["NewTopicName"];
 	$newDesc = $_POST["TopicDesc"];
 
@@ -38,12 +40,19 @@ else if ($_POST["create"] == "Create Subject")
 
 	$topicCode = GetTopicIdFromName($conn, $topicName);
 
-    //TODO - Check if subject already exists
-
-	if (is_null($topicCode)){
+	if (is_null($topicCode))
+    {
 		header("location: ../scripts/MovePage.php?MoveTo=Home");
 		exit();
 	}
+
+    $subjects = GetSubjectsFromTopicId($conn, $topicCode);
+
+    if (in_array($subjectName, $subjects))
+    {
+        header("location: ../CreateOptionsPage.php?error=subjectalreadyexists");
+        exit();
+    }
 
 	CreateSubject($conn, $subjectName, $topicCode);
 

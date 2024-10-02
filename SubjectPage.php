@@ -174,9 +174,13 @@
 
                     echo '<div>'; //TODO  - Be able to open files in new tab and be able to download them / copy them
 
-                    foreach ($images as $image)
+                    while ($image = mysqli_fetch_assoc($images))
                     {
-                        echo '<img src="'.$image.'" style="width:25%">';
+                        echo '<form method="post" action="../scripts/DownloadImage.php">
+                        <input type="submit" class="header-button-style & button-update" value="Download Image">';
+                        echo '<div><a href="../ImagePage.php?FileName='.$SubjectName.'-'.$image["image_id"].'&ImageId='.$image["image_id"].'"><img src="'.$image["image_data"].'" style="width:25%"></a></div>';
+                        echo '<input type="text" name="imageId" value="'.$image["image_id"].'" hidden>
+                        <input type="text" name="fileName" value="'.$SubjectName.'-'.$image["image_id"].'" hidden></form>';
                     }
                     echo '</div>';
 				}
