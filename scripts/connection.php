@@ -1,7 +1,7 @@
 <?php
 include_once("DBCredentials.php");
 
-$conn = mysqli_connect($locaiton, $username, $password, 'heapunderflow');
+$conn = mysqli_connect($location, $username, $password, 'heapunderflow');
 
 if (!$conn)
 {
