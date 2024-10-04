@@ -6,8 +6,8 @@ if (isset($_COOKIE["key"]))
 
 	setcookie('key', null, 1, '/');
 
-	include_once("scripts/KeyFunctions.php");
-	include_once("scripts/connection.php");
+	include_once("../scripts/KeyFunctions.php");
+	include_once("../scripts/connection.php");
 
 	DeleteKeyForUser($conn, $key);
     DeleteKeyFromCookie();
@@ -20,14 +20,14 @@ if (isset($_COOKIE["key"]))
 	<meta charset="utf-8">
 	<title>Heap Underflow</title>
 
-	<link href="style/style.css" rel="stylesheet" type="text/css">
+	<link href="../style/style.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
 
     <?php
-        include_once("scripts/header.php");
+        include_once("../scripts/header.php");
     ?>
 
 	<!--Redirects the user back to home page after 15 seconds because it's cool ;)-->
@@ -35,7 +35,7 @@ if (isset($_COOKIE["key"]))
 		var myTimer = window.setTimeout(timer, 15000);
 
 		function timer() {
-			window.location.href = "scripts/MovePage.php?MoveTo=Home";
+			window.location.href = "../scripts/MovePage.php?MoveTo=Home";
 		}
 	</script>
 

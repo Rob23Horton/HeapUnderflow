@@ -4,16 +4,16 @@
 	<meta charset="utf-8">
 	<title>Heap Underflow</title>
 
-	<link href="style/style.css" rel="stylesheet" type="text/css">
+	<link href="../style/style.css" rel="stylesheet" type="text/css">
 
-	<script src="javascript/ChangeUserDetailsPage.js"></script>
+	<script src="../javascript/ChangeUserDetailsPage.js"></script>
 
 </head>
 
 <body>
 
 	<?php
-		include("scripts/header.php");
+		include("../scripts/header.php");
 		
 		if (!isset($_COOKIE["key"]))
 		{
@@ -24,7 +24,7 @@
 
 	<div style="text-align: center">
 		<div class="box-flex & box-style">
-			<form method="post" action="scripts/ChangeUserDetails.php">
+			<form method="post" action="../scripts/ChangeUserDetails.php">
 				<?php
 					echo "<h1>" . $_POST['change'] . "</h1>";
 

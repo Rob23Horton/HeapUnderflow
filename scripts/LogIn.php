@@ -13,7 +13,7 @@ echo "<br>Checking user exists";
 
 if (!UserExists($conn, $username))
 {
-	header("location: ../LogInPage.php?error=accountdoesntexist");
+	header("location: ../Pages/LogInPage.php?error=accountdoesntexist");
 	exit();
 }
 
@@ -25,7 +25,7 @@ echo "<br>Checking user exists";
 
 if ($userId == null)
 {
-	header("location: ../LogInPage.php?error=accountdoesntexist");
+	header("location: ../Pages/LogInPage.php?error=accountdoesntexist");
 	exit();
 }
 

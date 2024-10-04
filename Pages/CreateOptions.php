@@ -4,17 +4,17 @@
 	<meta charset="utf-8">
 	<title>Heap Underflow</title>
 
-	<link href="style/style.css" rel="stylesheet" type="text/css">
+	<link href="../style/style.css" rel="stylesheet" type="text/css">
 	
 </head>
 
 <body>
 	<?php
-		include("scripts/header.php");
+		include("../scripts/header.php");
 
 		if (!isset($_COOKIE["key"]))
 		{
-			header("location: scripts/MovePage.php?MoveTo=Home");
+			header("location: ../scripts/MovePage.php?MoveTo=Home");
 			exit();
 		}
 	?>
@@ -24,7 +24,7 @@
 				<h1>Create</h1>
 
 				<b1>
-					<form method="post" action="../CreatePage.php">
+					<form method="post" action="../Pages/CreatePage.php">
 
 						<input name="From" value="CreateOptions" hidden>
 						

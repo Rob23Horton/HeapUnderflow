@@ -10,17 +10,17 @@
             
                 if (!isset($_COOKIE["key"]))
                 {
-                    echo '<a class="header-button-style & button-update & horizontal-box-item & link-button" style="text-align:center" href="../LogInPage.php">Log In</a>';
+                    echo '<a class="header-button-style & button-update & horizontal-box-item & link-button" style="text-align:center" href="../Pages/LogInPage.php">Log In</a>';
                 }
                 else
                 {
-                    echo '<a class="header-button-style & button-update & horizontal-box-item & link-button" style="text-align:center" href="../CreateOptionsPage.php">Create</a>';
-                    echo '<a class="header-button-style & button-update & horizontal-box-item & link-button" style="text-align:center" href="../AccountPage.php">Account</a>';
-                    echo '<a class="header-button-style & button-update & horizontal-box-item & link-button" style="text-align:center" href="LogOutPage.php">Log Out</a>';
+                    echo '<a class="header-button-style & button-update & horizontal-box-item & link-button" style="text-align:center" href="../Pages/CreateOptionsPage.php">Create</a>';
+                    echo '<a class="header-button-style & button-update & horizontal-box-item & link-button" style="text-align:center" href="../Pages/AccountPage.php">Account</a>';
+                    echo '<a class="header-button-style & button-update & horizontal-box-item & link-button" style="text-align:center" href="../Pages/LogOutPage.php">Log Out</a>';
                 }
             ?>
 
-            <a class="header-button-style & button-update & horizontal-box-item & link-button" style="text-align:center" href="../InformationPage.php">Information</a>
+            <a class="header-button-style & button-update & horizontal-box-item & link-button" style="text-align:center" href="../Pages/InformationPage.php">Information</a>
 		</div>
 	</div>
 </header>

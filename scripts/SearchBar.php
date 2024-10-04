@@ -4,7 +4,7 @@
 
     <h1>Search</h1>
     <b1>
-        <form method="post" action="scripts/GetSearch.php">
+        <form method="post" action="../scripts/GetSearch.php">
             <div>
                 <input type="text" name="SearchInput" placeholder="Search Here">
                 <button type="submit" class="header-button-style & button-update" style="margin-top:5px">Search</button>
@@ -51,7 +51,7 @@
                 foreach ($topics as $topic)
                 {
                     $name = substr($topic, 1);
-                    echo '<div style="padding-bottom:5px"><a class="header-button-style & button-update & link-button" href="../TopicPage.php?topic='.urlencode($name).'">'.$name.'</a></div>';
+                    echo '<div style="padding-bottom:5px"><a class="header-button-style & button-update & link-button" href="../Pages/TopicPage.php?topic='.urlencode($name).'">'.$name.'</a></div>';
                 }
 
                 echo '</b6>';
@@ -66,7 +66,7 @@
                     $topic_code = substr($subject, 1, 4);
                     $topicName = GetTopicNameFromId($conn, $topic_code);
 
-                    echo '<div style="padding-bottom:5px"><a class="header-button-style & button-update & link-button" href="../SubjectPage.php?topic='.urlencode($topicName).'&subject='.urlencode($name).'">'.$name.'</a></div>';
+                    echo '<div style="padding-bottom:5px"><a class="header-button-style & button-update & link-button" href="../Pages/SubjectPage.php?topic='.urlencode($topicName).'&subject='.urlencode($name).'">'.$name.'</a></div>';
                 }
 
                 echo '</b6>';

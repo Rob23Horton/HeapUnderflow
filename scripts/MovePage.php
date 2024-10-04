@@ -18,31 +18,31 @@ foreach (array_merge($_POST, $_GET) as $key => $value)
 	
 	else if ($value == "Log In")
 	{
-		header("location: ../LogInPage.php");
+		header("location: ../Pages/LogInPage.php");
 		exit();
 	}
 	
 	else if ($value == "Log Out")
 	{
-		header("location: ../LogOutPage.php");
+		header("location: ../Pages/LogOutPage.php");
 		exit();
 	}
 
 	else if ($value == "Create Account")
 	{
-		header("location: ../CreateAccountPage.php");
+		header("location: ../Pages/CreateAccountPage.php");
 		exit();
 	}
 
 	else if ($value == "Account")
 	{
-		header("location: ../AccountPage.php");
+		header("location: ../Pages/AccountPage.php");
 		exit();
 	}
 
 	else if ($value == "Create")
 	{
-		header("location: ../CreateOptionsPage.php");
+		header("location: ../Pages/CreateOptionsPage.php");
 		exit();
 	}
 }

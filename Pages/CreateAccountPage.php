@@ -4,23 +4,23 @@
 <meta charset="utf-8">
 <title>Heap Underflow</title>
 	
-	<link href="style/style.css" rel="stylesheet" type="text/css">
+	<link href="../style/style.css" rel="stylesheet" type="text/css">
 
-	<script src="javascript/CreateAccountPage.js"></script>
+	<script src="../javascript/CreateAccountPage.js"></script>
 	
 </head>
 
 <body>
 	
 	<?php
-		include("scripts/header.php");
+		include("../scripts/header.php");
 	?>
 	
 	<div style="text-align: center">
 		<div class="box-flex & box-style">
 			<h1>Create Account</h1>
 			<b1>
-				<form method="post" action="scripts/CreateAccount.php">
+				<form method="post" action="../scripts/CreateAccount.php">
 					<div class="vertical-box-item">
 						<input type="text" id="username" name="username" placeholder="Username" required oninput="checkEnteredValid()">
 					</div>

@@ -4,24 +4,24 @@
 	<meta charset="utf-8">
 	<title>Heap Underflow</title>
 
-	<link href="style/style.css" rel="stylesheet" type="text/css">
+	<link href="../style/style.css" rel="stylesheet" type="text/css">
 	
-	<script src="javascript/TopicPage.js"></script>
+	<script src="../javascript/TopicPage.js"></script>
 	
 </head>
 
 <body>
 	<?php
-		include("scripts/header.php");
+		include("../scripts/header.php");
 	?>
 
 	<div style="text-align: center">
 		<div class="box-flex & box-style">
             <?php
 
-                include_once("scripts/connection.php");
-                include_once("scripts/TopicFunctions.php");
-                include_once("scripts/SubjectFunctions.php");
+                include_once("../scripts/connection.php");
+                include_once("../scripts/TopicFunctions.php");
+                include_once("../scripts/SubjectFunctions.php");
         
                 $topic_name = $_GET["topic"];
 
@@ -45,7 +45,7 @@
                     echo "<ul id='subjects'>";
                     foreach ($topic_subjects as $subject)
                     {
-                        echo "<li class='vertical-box-item'><a class='header-button-style & button-update & link-button' href='../SubjectPage.php?topic=".urlencode($topic_name)."&subject=".urlencode($subject)."'>".htmlspecialchars($subject)."</a></li>";
+                        echo "<li class='vertical-box-item'><a class='header-button-style & button-update & link-button' href='../Pages/SubjectPage.php?topic=".urlencode($topic_name)."&subject=".urlencode($subject)."'>".htmlspecialchars($subject)."</a></li>";
                     }
 
                     echo "</ul>";
@@ -60,7 +60,7 @@
 			<?php
 				if (isset($_COOKIE["key"]))
 				{
-					echo '<form method="post" action="../CreatePage.php">';
+					echo '<form method="post" action="../Pages/CreatePage.php">';
 					echo '<p>Create Subject</p>';
 				
 					echo "<input name='From' value='TopicPage' hidden>";

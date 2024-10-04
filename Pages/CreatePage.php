@@ -4,19 +4,19 @@
 	<meta charset="utf-8">
 	<title>Heap Underflow</title>
 
-	<link href="style/style.css" rel="stylesheet" type="text/css">
-	<script src="javascript/CreatePage.js"></script>
+	<link href="../style/style.css" rel="stylesheet" type="text/css">
+	<script src="../javascript/CreatePage.js"></script>
 </head>
 
 <body onload="updateAvailableSubjects()">
 	<?php
-		include("scripts/header.php");
+		include("../scripts/header.php");
 
-		include_once("scripts/connection.php");
+		include_once("../scripts/connection.php");
 
 		if (!isset($_COOKIE["key"]))
 		{
-			header("location: scripts/MovePage.php?MoveTo=Home");
+			header("location: ../scripts/MovePage.php?MoveTo=Home");
 			exit();
 		}
 	?>
@@ -30,10 +30,10 @@
 
 				<?php
 					
-					include_once("scripts/connection.php");
-					include_once("scripts/SubjectFunctions.php");
-					include_once("scripts/TopicFunctions.php");
-                    include_once("scripts/KeyFunctions.php");
+					include_once("../scripts/connection.php");
+					include_once("../scripts/SubjectFunctions.php");
+					include_once("../scripts/TopicFunctions.php");
+                    include_once("../scripts/KeyFunctions.php");
 
                     $user_code = GetUserIdFromKey($conn, $_COOKIE["key"]);
 

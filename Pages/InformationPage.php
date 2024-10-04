@@ -4,14 +4,14 @@
 	<meta charset="utf-8">
 	<title>Heap Underflow</title>
 
-	<link href="style/style.css" rel="stylesheet" type="text/css">
+	<link href="../style/style.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
 
     <?php
-        include_once("scripts/header.php");
+        include_once("../scripts/header.php");
     ?>
 
 	<div style="text-align: center">

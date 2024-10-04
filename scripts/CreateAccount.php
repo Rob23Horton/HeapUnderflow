@@ -12,7 +12,7 @@ $hashedPassword = HashPassword($username, $password);
 
 if (UserExists($conn, $username))
 {
-	header("location: ../CreateAccountPage.php?error=useralreadyexists");
+	header("location: ../Pages/CreateAccountPage.php?error=useralreadyexists");
 	exit();
 
 }
@@ -23,7 +23,7 @@ CreateUser($conn, $username, $hashedPassword);
 $userId = GetUserId($conn, $username, $hashedPassword);
 CreateNewUserInfo($conn, $userId);
 
-header("location: ../LogInPage.php");
+header("location: ../Pages/LogInPage.php");
 exit();
 
 ?>

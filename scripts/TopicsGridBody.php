@@ -10,7 +10,7 @@
 
         foreach ($topics as $topic)
         {
-            echo '<p class="vertical-box-item"><a class="header-button-style & button-update & link-button" href="../TopicPage.php?topic=' . htmlspecialchars($topic) . '">'.$topic.'</a> </p>';
+            echo '<p class="vertical-box-item"><a class="header-button-style & button-update & link-button" href="../Pages/TopicPage.php?topic=' . htmlspecialchars($topic) . '">'.$topic.'</a> </p>';
         }
 
     ?>

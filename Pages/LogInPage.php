@@ -4,20 +4,20 @@
 	<meta charset="utf-8">
 	<title>Heap Underflow</title>
 
-	<link href="style/style.css" rel="stylesheet" type="text/css">
+	<link href="../style/style.css" rel="stylesheet" type="text/css">
 	
-	<script src="javascript/LogInPage.js"></script>
+	<script src="../javascript/LogInPage.js"></script>
 
 </head>
 
 <body>
 
 	<?php
-		include("scripts/header.php");
+		include("../scripts/header.php");
 
 		if (isset($_COOKIE["key"]))
 		{
-			header("location: scripts/MovePage.php?MoveToHomePage=Home");
+			header("location: ../scripts/MovePage.php?MoveToHomePage=Home");
 		}
 	?>
 
@@ -25,7 +25,7 @@
 		<div class="box-flex & box-style">			
 			<h1>Log In</h1>
 			<b1>
-				<form method="post" action="scripts/LogIn.php">
+				<form method="post" action="../scripts/LogIn.php">
 					<p class="vertical-box-item">
 						<input type="text" name="username" id="username" placeholder="Username" required oninput="checkEnteredValid()">
 					</p>
@@ -51,7 +51,7 @@
 
 					
 				</form>
-				<form method="post" action="scripts/MovePage.php">
+				<form method="post" action="../scripts/MovePage.php">
 					<p class="vertical-box-item">
 						<input type="submit" class="header-button-style & button-update" name="MoveToAccountPage" value="Create Account">
 					</p>

@@ -4,26 +4,26 @@
 	<meta charset="utf-8">
 	<title>Heap Underflow</title>
 
-	<link href="style/style.css" rel="stylesheet" type="text/css">
+	<link href="../style/style.css" rel="stylesheet" type="text/css">
 
-	<script src="javascript/SubjectPage.js"></script>
-    <script src="javascript/UploadImage.js"></script>
+	<script src="../javascript/SubjectPage.js"></script>
+    <script src="../javascript/UploadImage.js"></script>
 
 </head>
 
 <body>
 	<?php
-		include("scripts/header.php");
+		include("../scripts/header.php");
 	?>
 
 	<div style="text-align: center">
 		<div class="box-flex & box-style">
 
 			<?php
-				include_once("scripts/connection.php");
-				include_once("scripts/TopicFunctions.php");
-				include_once("scripts/SubjectFunctions.php");
-				include_once("scripts/DefinitionFunctions.php");
+				include_once("../scripts/connection.php");
+				include_once("../scripts/TopicFunctions.php");
+				include_once("../scripts/SubjectFunctions.php");
+				include_once("../scripts/DefinitionFunctions.php");
 			
 				$TopicName = $_GET["topic"];
 				$SubjectName = $_GET["subject"];
@@ -73,8 +73,8 @@
                         
                         echo '<div>';
 
-                        include_once("scripts/KeyFunctions.php");
-                        include_once("scripts/ImageFunctions.php");
+                        include_once("../scripts/KeyFunctions.php");
+                        include_once("../scripts/ImageFunctions.php");
 
                         $definitionId = GetDefinitionIdFromSubjectCodeAndUserCode($conn, $SubjectCode, $UserCode);
 
@@ -93,7 +93,7 @@
                             echo '<input type="text" name="definitionId" value="'.$definition_id.'" hidden>';
 							echo '<input type="text" name="userCode" value="'.$userCode.'" hidden>';
 							echo '<input type="text" name="imageId" value="'.$image_id.'" hidden>';
-							echo '<input type="text" name="returnLocation" value="../SubjectPage.php?topic='.urlencode($TopicName).'&subject='.urlencode($SubjectName).'" hidden>';
+							echo '<input type="text" name="returnLocation" value="../Pages/SubjectPage.php?topic='.urlencode($TopicName).'&subject='.urlencode($SubjectName).'" hidden>';
 							echo '<div><input type="submit" class="header-button-style & button-update" value="Delete Image"></div>';
                             echo '</form>';
 
@@ -124,7 +124,7 @@
 					}
 					else
 					{
-						echo '<form method="post" action="CreatePage.php">';
+						echo '<form method="post" action="../Pages/CreatePage.php">';
 
 						echo '<input type="text" name="topic" value="'.htmlspecialchars($TopicName).'" hidden>';
 						echo '<input type="text" name="subject" value="'.htmlspecialchars($SubjectName).'" hidden>';
@@ -178,7 +178,7 @@
                     {
                         echo '<form method="post" action="../scripts/DownloadImage.php">
                         <input type="submit" class="header-button-style & button-update" value="Download Image">';
-                        echo '<div><a href="../ImagePage.php?FileName='.$SubjectName.'-'.$image["image_id"].'&ImageId='.$image["image_id"].'"><img src="'.$image["image_data"].'" style="width:25%"></a></div>';
+                        echo '<div><a href="../Pages/ImagePage.php?FileName='.$SubjectName.'-'.$image["image_id"].'&ImageId='.$image["image_id"].'"><img src="'.$image["image_data"].'" style="width:25%"></a></div>';
                         echo '<input type="text" name="imageId" value="'.$image["image_id"].'" hidden>
                         <input type="text" name="fileName" value="'.$SubjectName.'-'.$image["image_id"].'" hidden></form>';
                     }

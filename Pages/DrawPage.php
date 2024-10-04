@@ -4,8 +4,8 @@
 	<meta charset="utf-8">
 	<title>Heap Underflow</title>
 
-	<link href="style/style.css" rel="stylesheet" type="text/css">
-    <script src="javascript/DrawPage.js"></script>
+	<link href="../style/style.css" rel="stylesheet" type="text/css">
+    <script src="../javascript/DrawPage.js"></script>
 </head>
 
 <body>
@@ -13,7 +13,7 @@
         //Be able to be a guest
         if (!isset($_COOKIE["key"]))
         {
-            echo '<form method="post" action="../LogInPage.php" id="logInForm" hidden><input type="text" name="returnLocation" value="../DrawPage.php"></form><script>document.getElementById("logInForm").submit();</script>';
+            echo '<form method="post" action="../Pages/LogInPage.php" id="logInForm" hidden><input type="text" name="returnLocation" value="../Pages/DrawPage.php"></form><script>document.getElementById("logInForm").submit();</script>';
         }
 
 

@@ -24,13 +24,13 @@ if ($_POST["create"] == "Create Topic")
 
 	if (in_array($newTopic, $topics))
 	{
-		header("location: ../CreateOptionsPage.php?error=topicalreadyexists");
+		header("location: ../Pages/CreateOptionsPage.php?error=topicalreadyexists");
 		exit();
 	}
 
 	CreateTopic($conn, $newTopic, $newDesc);
 
-    header("location: ../TopicPage.php?topic=".urlencode($newTopic));
+    header("location: ../Pages/TopicPage.php?topic=".urlencode($newTopic));
     exit();
 }
 else if ($_POST["create"] == "Create Subject")
@@ -50,13 +50,13 @@ else if ($_POST["create"] == "Create Subject")
 
     if (in_array($subjectName, $subjects))
     {
-        header("location: ../CreateOptionsPage.php?error=subjectalreadyexists");
+        header("location: ../Pages/CreateOptionsPage.php?error=subjectalreadyexists");
         exit();
     }
 
 	CreateSubject($conn, $subjectName, $topicCode);
 
-    header("location: ../SubjectPage.php?topic=".urlencode($topicName)."&subject=".urlencode($subjectName));
+    header("location: ../Pages/SubjectPage.php?topic=".urlencode($topicName)."&subject=".urlencode($subjectName));
     exit();
 }
 else if ($_POST["create"] == "Create Definition")
@@ -80,7 +80,7 @@ else if ($_POST["create"] == "Create Definition")
 
 	CreateDefinition($conn, $defintion, $userCode, $subjectCode);
 
-    header("location: ../SubjectPage.php?topic=".urlencode($topic)."&subject=".urlencode($subject));
+    header("location: ../Pages/SubjectPage.php?topic=".urlencode($topic)."&subject=".urlencode($subject));
     exit();
 }
 else if ($_POST["create"] == "Update Definition")
@@ -94,7 +94,7 @@ else if ($_POST["create"] == "Update Definition")
 
 	if (is_null($subjectCode))
 	{
-		header("location: ../SubjectPage.php?topic=".urlencode($topic)."&subject=".urlencode($subject)."&updated=false");
+		header("location: ../Pages/SubjectPage.php?topic=".urlencode($topic)."&subject=".urlencode($subject)."&updated=false");
 		exit();
 	}
 
@@ -102,7 +102,7 @@ else if ($_POST["create"] == "Update Definition")
 
 	UpdateDefinition($conn, $_POST["definition"], $userCode, $subjectCode);
 
-	header("location: ../SubjectPage.php?topic=".urlencode($topic)."&subject=".urlencode($subject)."&updated=true");
+	header("location: ../Pages/SubjectPage.php?topic=".urlencode($topic)."&subject=".urlencode($subject)."&updated=true");
 	exit();
 
 }

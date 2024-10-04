@@ -29,7 +29,7 @@ echo "<br>";
 
 if ($hashedPassword != $dbPassword)
 {
-	header("location: ../AccountPage.php?error=passwordincorrect");
+	header("location: ../Pages/AccountPage.php?error=passwordincorrect");
 	exit();
 }
 
@@ -40,7 +40,7 @@ if ($_POST["change"] == "Change Username")
 	//TODO - Check if user already exists ------------------------------
 	if (UserExists($conn, $newUsername))
 	{
-		header("location: ../AccountPage.php?error=UsernameIsAlreadyUsed");
+		header("location: ../Pages/AccountPage.php?error=UsernameIsAlreadyUsed");
 		exit();
 	}
 

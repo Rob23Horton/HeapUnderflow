@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<title>Heap Underflow</title>
 
-	<link href="style/style.css" rel="stylesheet" type="text/css">
+	<link href="../style/style.css" rel="stylesheet" type="text/css">
 
     <script src="../javascript/UploadImage.js"></script>
 </head>
@@ -12,7 +12,7 @@
 <body>
 
 	<?php
-		include("scripts/header.php");		
+		include("../scripts/header.php");		
 	?>
 
 	<div style="text-align: center">
@@ -23,17 +23,17 @@
             <h2>Profile Picture</h2>
             <div>
                 <?php
-                    include_once("scripts/connection.php");
+                    include_once("../scripts/connection.php");
 
                     if (!isset($_COOKIE["key"]))
                     {
-                        header("location: scripts/MovePage.php?MoveTo=Home");
+                        header("location: ../scripts/MovePage.php?MoveTo=Home");
                         exit();
                     }
 
-                    include_once("scripts/KeyFunctions.php");
-                    include_once("scripts/UserInfoFunctions.php");
-                    include_once("scripts/ImageFunctions.php");
+                    include_once("../scripts/KeyFunctions.php");
+                    include_once("../scripts/UserInfoFunctions.php");
+                    include_once("../scripts/ImageFunctions.php");
 
                     $userId = GetUserIdFromKey($conn, $_COOKIE["key"]);
 
@@ -50,7 +50,7 @@
                 <input type="file" id="fileInput" oninput="ImageChanged()">
                 <input type="text" name="fileData" id="fileData" hidden> <!--Actual Data -->
                 <input type="text" name="uploadType" value="Profile" hidden> <!-- Image Type -->
-                <input type="text" name="returnLocation" value="../AccountPage.php" hidden> <!-- Return Location -->
+                <input type="text" name="returnLocation" value="../Pages/AccountPage.php" hidden> <!-- Return Location -->
                 <?php
                     if (isset($_GET["error"]))
                     {
@@ -71,9 +71,9 @@
 				<form method="post" action="ChangeUserDetailsPage.php">
 
 					<?php
-						include_once("scripts/connection.php");
-						include_once("scripts/KeyFunctions.php");
-						include_once("scripts/UserFunctions.php");
+						include_once("../scripts/connection.php");
+						include_once("../scripts/KeyFunctions.php");
+						include_once("../scripts/UserFunctions.php");
 
 						$userId = GetUserIdFromKey($conn, $_COOKIE["key"]);
 

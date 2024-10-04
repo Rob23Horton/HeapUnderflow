@@ -4,16 +4,16 @@
 	<meta charset="utf-8">
 	<title>Heap Underflow</title>
 
-	<link href="style/style.css" rel="stylesheet" type="text/css">
+	<link href="../style/style.css" rel="stylesheet" type="text/css">
 
-	<script src="javascript/SubjectPage.js"></script>
-    <script src="javascript/UploadImage.js"></script>
+	<script src="../javascript/SubjectPage.js"></script>
+    <script src="../javascript/UploadImage.js"></script>
 
 </head>
 
 <body>
 	<?php
-		include("scripts/header.php");
+		include("../scripts/header.php");
 	?>
 
 	<div style="text-align: center">
@@ -34,8 +34,8 @@
                         $fileName = $_GET["FileName"];
                     }
                     
-                    include_once("scripts/connection.php");
-                    include_once("scripts/ImageFunctions.php");
+                    include_once("../scripts/connection.php");
+                    include_once("../scripts/ImageFunctions.php");
 
                     $imageId = $_GET["ImageId"];
 
