@@ -31,6 +31,6 @@ if ($image_data == "")
     include("../scripts/BadRequest.php");
 }
 
-echo '{"image_data": "'.$image_data.'" })';
+echo '{ "image_data": "'.$image_data.'" }';
 
 ?>

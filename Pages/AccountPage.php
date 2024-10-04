@@ -7,6 +7,7 @@
 	<link href="../style/style.css" rel="stylesheet" type="text/css">
 
     <script src="../javascript/UploadImage.js"></script>
+	<script src="../javascript/AccountPage.js"></script>
 </head>
 
 <body>
@@ -38,10 +39,9 @@
                     $userId = GetUserIdFromKey($conn, $_COOKIE["key"]);
 
                     $imageCode = GetProfileImageCodeFromUserCode($conn, $userId);
+					echo '<p id="image_id" hidden>'.$imageCode.'</p>';
 
-                    $imageData = GetImageFromId($conn, $imageCode);
-
-                    echo '<img src="'.$imageData.'" style="width:100%;height:auto;max-width:50%" id="imagePreview">';
+                    echo '<img style="width:100%;height:auto;max-width:50%" id="imagePreview">';
 
                 ?>
             </div>
