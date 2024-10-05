@@ -33,6 +33,27 @@ function GetAllDefinitionDataFromSubjectCode($conn, $subject_code)
 
 }
 
+function GetImageCodesForDefinition($conn, $definition_id)
+{
+	$sql = "SELECT f.file_code FROM tblDefinitionFiles as f WHERE f.file_type = 'i' AND f.definition_code = '$definition_id';";
+
+	$result = mysqli_query($conn, $sql);
+
+	if (mysqli_num_rows($result) == 0)
+	{
+		return [];
+	}
+
+	$image_ids = [];
+
+	while ($image = mysqli_fetch_assoc($result)["file_code"])
+    {
+        array_push($image_ids, $image);
+    }
+
+	return $image_ids;
+}
+
 function GetImagesForDefinition($conn, $definition_id)
 {
     $sql = "SELECT i.image_id, i.image_data FROM tblDefinitionFiles as f INNER JOIN tblImages as i ON f.file_code = i.image_id WHERE f.file_type = 'i' AND f.definition_code = '$definition_id';";
