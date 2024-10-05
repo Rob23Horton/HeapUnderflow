@@ -8,7 +8,7 @@ window.onload = (function (){
     var currentLocation = window.location.href.split("/Pages")[0];
     var image_id = document.getElementById("image_id").innerHTML;
 
-    xhr.open('GET', currentLocation + '/WebService/GetImage.php?image_id=' + image_id);
+    xhr.open('GET', currentLocation + '/WebService/Image/GetImage.php?image_id=' + image_id);
 
     xhr.onload = function(){
         if (xhr.status === 200){
