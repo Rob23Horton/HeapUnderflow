@@ -24,11 +24,11 @@ echo '{ "image_ids":[';
 
 if (sizeof($definition_images) > 0)
 {
-    echo json_encode(array_pop($definition_images));
+    echo array_pop($definition_images);
 
     foreach ($definition_images as $id)
     {
-        echo ', ' . json_encode($id);
+        echo ', ' . $id;
     }
 }
 

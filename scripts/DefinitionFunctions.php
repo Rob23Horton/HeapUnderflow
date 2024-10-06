@@ -25,7 +25,7 @@ function GetAllDefinitionsFromSubjectCode($conn, $subject_code)
 function GetAllDefinitionDataFromSubjectCode($conn, $subject_code)
 {
 
-	$sql = "SELECT d.definition_id, d.definition, u.username, i.image_data FROM tblDefinitions as d INNER JOIN tblUsers as u ON d.user_code = u.user_id INNER JOIN tblUserInformation as ui ON u.user_id = ui.user_code INNER JOIN tblImages as i ON ui.profile_image_code = i.image_id WHERE d.subject_code = '$subject_code';";
+	$sql = "SELECT d.definition_id, d.definition, u.user_id, u.username FROM tblDefinitions as d INNER JOIN tblUsers as u ON d.user_code = u.user_id WHERE d.subject_code = '$subject_code';";
 
 	$result = mysqli_query($conn, $sql);
 

@@ -150,8 +150,8 @@
 				while ($currDefinition = mysqli_fetch_assoc($definitions))
 				{
                     $definitionId = $currDefinition["definition_id"];
+					$user_id = $currDefinition["user_id"];
 					$username = $currDefinition["username"];
-					$image = $currDefinition["image_data"];
 					$define = $currDefinition["definition"];
 
 					echo '<li class="vertical-box-item" style="text-align: center">';
@@ -161,13 +161,16 @@
                                 <td>
                                     <h4>'.htmlspecialchars($username).'</h4>
                                 </td>
-                                <td>
-                                    <img src="'.$image.'" style="width:50px">
+                                <td name="userDefinitionContainer">
+									<label hidden>'.$user_id.'</label>
+                                    <div></div>
                                 </td>
                             ';
 					
-					echo '<td><textarea readonly rows="3" cols="40" style="padding-bottom:5%;resize:vertical">'.htmlspecialchars($define).'</textarea></td></tr>
+					echo '</tr>
                         </table>';
+
+					echo '<textarea readonly rows="3" cols="40" style="padding-bottom:5%;resize:vertical">'.htmlspecialchars($define).'</textarea>';
 
 
 					//This is definition images that is loaded by the JS

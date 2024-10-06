@@ -23,6 +23,7 @@ function NoResultCheck()
 function LoadDefinitionImages()
 {
 	NoResultCheck();
+	LoadUserImages();
 
 	var definitionImages = document.getElementsByName("definitionImageContainer");
 
@@ -52,7 +53,7 @@ function GetDefinitonImageIds(definitionId, imageDiv)
             var image_ids = data["image_ids"];
 
 			image_ids.forEach(function(currImage){
-				GetAndCreateImage(currImage, imageDiv);
+				GetAndCreateImage(currImage, imageDiv, window.innerWidth / 6);
 
 			});
         }
@@ -65,7 +66,7 @@ function GetDefinitonImageIds(definitionId, imageDiv)
     xhr.send();
 }
 
-function GetAndCreateImage(imageId, imageDiv)
+function GetAndCreateImage(imageId, imageDiv, width)
 {
 	var currentLocation = window.location.href.split("/Pages")[0];
 
@@ -82,12 +83,11 @@ function GetAndCreateImage(imageId, imageDiv)
 			//Creates image
 			var img = document.createElement('img');
 			img.src = image_data;
-			img.setAttribute("width", window.innerWidth / 6);
+			img.setAttribute("width", width);
 			imageDiv.appendChild(img);
         }
         else
         {
-            console.log("Account Image couldn't be loaded")
 			var errorLbl = document.createElement('label');
 			errorLbl.innerHTML = "Image couldn't be loaded";
 			imageDiv.appendChild(errorLbl);
@@ -97,6 +97,54 @@ function GetAndCreateImage(imageId, imageDiv)
     xhr.send();
 
 }
+
+
+function LoadUserImages()
+{
+
+	var imageContainers = document.getElementsByName("userDefinitionContainer");
+
+	for (let index = 0; index < imageContainers.length; ++index)
+	{
+		var userId = (imageContainers[index]).getElementsByTagName("label")[0].innerHTML;
+
+		var imageDiv = (imageContainers[index]).getElementsByTagName("div")[0];
+
+		console.log(imageDiv);
+
+		GetUserImages(userId, imageDiv);
+	}
+
+}
+
+
+function GetUserImages(userId, containerDiv)
+{
+
+	var currentLocation = window.location.href.split("/Pages")[0];
+
+	var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', currentLocation+'/WebService/User/GetUserImage.php?user_id='+userId);
+
+    xhr.onload = function(){
+        if (xhr.status === 200){
+            var data = JSON.parse(xhr.responseText);
+
+            var image_id = data["image_id"];
+
+			GetAndCreateImage(image_id, containerDiv, window.innerWidth / 14);
+        }
+        else
+        {
+            console.log("User image couldn't be loaded")
+        }
+    }
+
+    xhr.send();
+
+}
+
 
 function updateDefinitionList() {
 
