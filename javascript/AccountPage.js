@@ -19,9 +19,6 @@ window.onload = (function (){
         }
         else
         {
-
-            //TODO - Show debugging on web page
-            console.log("Account Image couldn't be loaded")
             var errorLbl = document.getElementById("image_id");
 
             errorLbl.innerHTML = "Profile Image couldn't be loaded!";

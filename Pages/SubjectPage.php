@@ -11,7 +11,7 @@
 
 </head>
 
-<body>
+<body onload="LoadDefinitionImages()">
 	<?php
 		include("../scripts/header.php");
 	?>
@@ -89,11 +89,11 @@
                             $image_id = $imageData["image_id"];
 
                             echo '<form method="post" action="../scripts/DeleteImage.php" class="vertical-box-item">';
-                            echo '<img src="'.$image.'" style="width:100%;height:auto;max-width:500px">';
+                            echo '<img src="'.$image.'" style="width:100%;height:auto;max-width:500px">'; //TODO - Change this
                             echo '<input type="text" name="definitionId" value="'.$definition_id.'" hidden>';
 							echo '<input type="text" name="userCode" value="'.$userCode.'" hidden>';
 							echo '<input type="text" name="imageId" value="'.$image_id.'" hidden>';
-							echo '<input type="text" name="returnLocation" value="../Pages/SubjectPage.php?topic='.urlencode($TopicName).'&subject='.urlencode($SubjectName).'" hidden>';
+							echo '<input type="text" name="returnLocation" hidden>';
 							echo '<div><input type="submit" class="header-button-style & button-update" value="Delete Image"></div>';
                             echo '</form>';
 
@@ -159,7 +159,7 @@
                     echo '<table style="margin:auto">
                             <tr>
                                 <td>
-                                    <h4>'.$username.'</h4>
+                                    <h4>'.htmlspecialchars($username).'</h4>
                                 </td>
                                 <td>
                                     <img src="'.$image.'" style="width:50px">
@@ -169,20 +169,13 @@
 					echo '<td><textarea readonly rows="3" cols="40" style="padding-bottom:5%;resize:vertical">'.htmlspecialchars($define).'</textarea></td></tr>
                         </table>';
 
-                    
-                    $images = GetImagesForDefinition($conn, $definitionId);
 
-                    echo '<div>'; //TODO  - Be able to open files in new tab and be able to download them / copy them
+					//This is definition images that is loaded by the JS
+                    echo '<div name="definitionImageContainer">';
+					echo '<label hidden>'.$definitionId.'</label>';
+					echo '<div ><img src="" style="width:25%"/></div>';
+					echo '</div>';
 
-                    while ($image = mysqli_fetch_assoc($images))
-                    {
-                        echo '<form method="post" action="../scripts/DownloadImage.php">
-                        <input type="submit" class="header-button-style & button-update" value="Download Image">';
-                        echo '<div><a href="../Pages/ImagePage.php?FileName='.$SubjectName.'-'.$image["image_id"].'&ImageId='.$image["image_id"].'"><img src="'.$image["image_data"].'" style="width:25%"></a></div>';
-                        echo '<input type="text" name="imageId" value="'.$image["image_id"].'" hidden>
-                        <input type="text" name="fileName" value="'.$SubjectName.'-'.$image["image_id"].'" hidden></form>';
-                    }
-                    echo '</div>';
 				}
 
 				echo '</ul><p id="NoResults" style="display:none">Nothing to see.</p></div>';

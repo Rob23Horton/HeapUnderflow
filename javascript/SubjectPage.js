@@ -1,14 +1,101 @@
 // JavaScript Document
 
 
-window.onload = function () {
+function NoResultCheck()
+{
 	var definitionsList = document.getElementById("definitions");
 
-	if (!definitionsList) {
+	if (definitionsList.children.length == 0) {
 		var noResultText = document.getElementById("NoResults");
 
 		noResultText.style.display = "";
 	}
+
+	var returnLocations = document.getElementsByName("returnLocation");
+
+	for (let i = 0; i < returnLocations.length; ++i)
+	{
+		returnLocations[i].value = window.location.href;
+	}
+
+}
+
+function LoadDefinitionImages()
+{
+	NoResultCheck();
+
+	var definitionImages = document.getElementsByName("definitionImageContainer");
+
+	for (let index = 0; index < definitionImages.length; ++index)
+	{
+		var definitionId = (definitionImages[index]).getElementsByTagName("label")[0].innerHTML;
+
+		var imageDiv = (definitionImages[index]).getElementsByTagName("div")[0];
+		
+		GetDefinitonImageIds(definitionId, imageDiv);
+	}
+}
+
+
+function GetDefinitonImageIds(definitionId, imageDiv)
+{
+	var currentLocation = window.location.href.split("/Pages")[0];
+
+	var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', currentLocation+'/WebService/Definition/GetDefinitionImages.php?definition_id='+definitionId);
+
+    xhr.onload = function(){
+        if (xhr.status === 200){
+            var data = JSON.parse(xhr.responseText);
+
+            var image_ids = data["image_ids"];
+
+			image_ids.forEach(function(currImage){
+				GetAndCreateImage(currImage, imageDiv);
+
+			});
+        }
+        else
+        {
+            console.log("Definition images couldn't be loaded")
+        }
+    }
+
+    xhr.send();
+}
+
+function GetAndCreateImage(imageId, imageDiv)
+{
+	var currentLocation = window.location.href.split("/Pages")[0];
+
+	var xhr = new XMLHttpRequest();
+
+    xhr.open('GET', currentLocation+'/WebService/Image/GetImage.php?image_id='+imageId);
+
+    xhr.onload = function(){
+        if (xhr.status === 200){
+            var data = JSON.parse(xhr.responseText);
+
+            var image_data = data["image_data"];
+
+			//Creates image
+			var img = document.createElement('img');
+			img.src = image_data;
+			img.setAttribute("width", window.innerWidth / 6);
+			imageDiv.appendChild(img);
+        }
+        else
+        {
+            console.log("Account Image couldn't be loaded")
+			var errorLbl = document.createElement('label');
+			errorLbl.innerHTML = "Image couldn't be loaded";
+			imageDiv.appendChild(errorLbl);
+        }
+    }
+
+    xhr.send();
+
 }
 
 function updateDefinitionList() {
