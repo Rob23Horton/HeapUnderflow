@@ -84,7 +84,8 @@ function GetAndCreateImage(imageId, imageDiv, width, style)
 			var img = document.createElement('img');
 			img.src = image_data;
 			img.setAttribute("width", width);
-			img.setAttribute("style", style);
+			img.setAttribute("style", style+";cursor:pointer");
+			img.setAttribute("onclick", "GoToPage('"+currentLocation+"/Pages/ImagePage.php?ImageId="+imageId+"FileName=HeapUnderflowImage')");
 			imageDiv.appendChild(img);
         }
         else
@@ -100,7 +101,7 @@ function GetAndCreateImage(imageId, imageDiv, width, style)
 }
 
 
-function LoadUserImages()
+async function LoadUserImages()
 {
 
 	var imageContainers = document.getElementsByName("userDefinitionContainer");
@@ -179,4 +180,9 @@ function updateDefinitionList() {
 	else {
 		noResultText.style.display = "none";
 	}
+}
+
+
+function GoToPage(url){
+	window.open(url, "_blank");
 }
