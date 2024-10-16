@@ -85,7 +85,7 @@ function GetAndCreateImage(imageId, imageDiv, width, style)
 			img.src = image_data;
 			img.setAttribute("width", width);
 			img.setAttribute("style", style+";cursor:pointer");
-			img.setAttribute("onclick", "GoToPage('"+currentLocation+"/Pages/ImagePage.php?ImageId="+imageId+"FileName=HeapUnderflowImage')");
+			img.setAttribute("onclick", "GoToPage('"+currentLocation+"/Pages/ImagePage.php?ImageId="+imageId+"&FileName=HeapUnderflowImage')");
 			imageDiv.appendChild(img);
         }
         else
