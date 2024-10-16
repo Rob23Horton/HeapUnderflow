@@ -53,7 +53,7 @@ function GetDefinitonImageIds(definitionId, imageDiv)
             var image_ids = data["image_ids"];
 
 			image_ids.forEach(function(currImage){
-				GetAndCreateImage(currImage, imageDiv, window.innerWidth / 6);
+				GetAndCreateImage(currImage, imageDiv, window.innerWidth / 6, "");
 
 			});
         }
@@ -66,7 +66,7 @@ function GetDefinitonImageIds(definitionId, imageDiv)
     xhr.send();
 }
 
-function GetAndCreateImage(imageId, imageDiv, width)
+function GetAndCreateImage(imageId, imageDiv, width, style)
 {
 	var currentLocation = window.location.href.split("/Pages")[0];
 
@@ -84,6 +84,7 @@ function GetAndCreateImage(imageId, imageDiv, width)
 			var img = document.createElement('img');
 			img.src = image_data;
 			img.setAttribute("width", width);
+			img.setAttribute("style", style);
 			imageDiv.appendChild(img);
         }
         else
@@ -133,7 +134,7 @@ function GetUserImages(userId, containerDiv)
 
             var image_id = data["image_id"];
 
-			GetAndCreateImage(image_id, containerDiv, window.innerWidth / 14);
+			GetAndCreateImage(image_id, containerDiv, window.innerWidth / 14, "border:2px solid black;border-radius:250px");
         }
         else
         {

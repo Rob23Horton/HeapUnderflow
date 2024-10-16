@@ -41,7 +41,7 @@
                     $imageCode = GetProfileImageCodeFromUserCode($conn, $userId);
 					echo '<p id="image_id" hidden>'.$imageCode.'</p>';
 
-                    echo '<img style="width:100%;height:auto;max-width:50%" id="imagePreview">';
+                    echo '<img style="width:100%;height:auto;max-width:50%;border:2px solid black;border-radius:250px" id="imagePreview">';
 
                 ?>
             </div>
