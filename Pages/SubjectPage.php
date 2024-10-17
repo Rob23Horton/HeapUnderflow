@@ -54,7 +54,7 @@
 					
 					if (!is_null($UserDefinition))
 					{
-						echo '<form method="post" action="scripts/Create.php" class="vertical-box-item">';
+						echo '<form method="post" action="../scripts/Create.php" class="vertical-box-item">';
 						echo '<h2>Your Definition</h2>';
 						echo '<input type="text" name="topicName" value="'.htmlspecialchars($TopicName).'" hidden>';
 						echo '<input type="text" name="subjectName" value="'.htmlspecialchars($SubjectName).'" hidden>';
