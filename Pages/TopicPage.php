@@ -31,7 +31,7 @@
 
                 $topic_subjects = GetSubjectsFromTopicId($conn, $topic_id);
 
-                echo '<h1>'.$topic_name.'</h1>';
+                echo '<h1>'.htmlspecialchars($topic_name).'</h1>';
                 echo '<input type="text" name="topic" value="'.htmlspecialchars($topic_name).'" hidden>';//Used to pass topic to next page
 
                 echo "<h2>Topic Description - </h2>";
